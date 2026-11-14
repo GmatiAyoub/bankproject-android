@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Configuration avec les ID de TON nav_graph.xml
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.FirstFragment, R.id.SecondFragment, R.id.nav_customer)
+                R.id.FirstFragment, R.id.SecondFragment, R.id.nav_customer,R.id.nav_account)
                 .build();
 
         // On récupère le NavController grâce à l'ID du fragment défini dans activity_main.xml

@@ -14,4 +14,8 @@
         android:id="@+id/nav_customer"
         android:title="Clients"
         android:icon="@android:drawable/ic_menu_myplaces" />
+    <item
+        android:id="@+id/nav_account"
+        android:title="Comptes"
+        android:icon="@android:drawable/ic_menu_agenda" />
 </menu>

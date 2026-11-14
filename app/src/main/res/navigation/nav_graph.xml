@@ -33,5 +33,10 @@
         android:name="com.example.bankproject.CustomerFragment"
         android:label="Clients"
         tools:layout="@layout/fragment_customer" />
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.example.bankproject.AccountFragment"
+        android:label="Comptes"
+        tools:layout="@layout/fragment_account" />
 
 </navigation>
