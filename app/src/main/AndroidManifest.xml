@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permission pour Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,8 +14,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <!-- L'écran de Login devient le point d'entrée -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.BankProject">
             <intent-filter>
@@ -24,6 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".RegisterActivity" />
+
+        <!-- Le Dashboard principal (n'est plus le LAUNCHER) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BankProject" />
 
     </application>
 

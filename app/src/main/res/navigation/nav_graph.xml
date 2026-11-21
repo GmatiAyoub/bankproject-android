@@ -3,40 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/nav_profile">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.bankproject.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/nav_profile"
+        android:name="com.example.bankproject.ProfileFragment"
+        android:label="Mon Profil"
+        tools:layout="@layout/fragment_profile" />
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.bankproject.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-
-    <!-- Ton nouveau fragment -->
-    <fragment
-        android:id="@+id/nav_customer"
-        android:name="com.example.bankproject.CustomerFragment"
-        android:label="Clients"
-        tools:layout="@layout/fragment_customer" />
     <fragment
         android:id="@+id/nav_account"
         android:name="com.example.bankproject.AccountFragment"
-        android:label="Comptes"
+        android:label="Mes Comptes"
         tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/nav_transaction"
+        android:name="com.example.bankproject.TransactionFragment"
+        android:label="Virements"
+        tools:layout="@layout/fragment_transaction" />
 
 </navigation>

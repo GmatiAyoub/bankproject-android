@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static Retrofit retrofitCustomer = null;
     private static Retrofit retrofitAccount = null;
+    private static Retrofit retrofitTransaction = null; // Nouveau
 
-    // Pour le Customer Service
     public static CustomerApi getApi() {
         if (retrofitCustomer == null) {
             retrofitCustomer = new Retrofit.Builder()
@@ -18,7 +18,6 @@ public class RetrofitClient {
         return retrofitCustomer.create(CustomerApi.class);
     }
 
-    // Pour le Account Service
     public static AccountApi getAccountApi() {
         if (retrofitAccount == null) {
             retrofitAccount = new Retrofit.Builder()
@@ -27,5 +26,16 @@ public class RetrofitClient {
                     .build();
         }
         return retrofitAccount.create(AccountApi.class);
+    }
+
+    // Pour le Transaction Service
+    public static TransactionApi getTransactionApi() {
+        if (retrofitTransaction == null) {
+            retrofitTransaction = new Retrofit.Builder()
+                    .baseUrl(TransactionApi.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofitTransaction.create(TransactionApi.class);
     }
 }

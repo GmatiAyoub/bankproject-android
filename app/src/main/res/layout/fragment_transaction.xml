@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Effectuer un virement"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText android:id="@+id/etSourceAccountId" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="ID Compte Source" android:inputType="number" />
+        <EditText android:id="@+id/etDestinationAccountId" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="ID Compte Destination" android:inputType="number" />
+        <EditText android:id="@+id/etTransferAmount" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Montant" android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/btnTransfer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Envoyer le virement" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Historique des transactions"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTransactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+</ScrollView>

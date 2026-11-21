@@ -23,42 +23,41 @@ import retrofit2.Response;
 import com.example.bankproject.adapters.AccountAdapter;
 import com.example.bankproject.models.Account;
 import com.example.bankproject.network.RetrofitClient;
+import com.example.bankproject.utils.SessionManager;
 
 public class AccountFragment extends Fragment {
 
-    private EditText etAccountNumber, etCustomerId, etBalance;
+    private EditText etAccountNumber, etBalance;
     private AccountAdapter adapter;
     private List<Account> accountList = new ArrayList<>();
+    private SessionManager sessionManager;
+    private Long currentCustomerId;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // On lie le design fragment_account.xml à ce Fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-        // Initialisation des vues
+        sessionManager = new SessionManager(getContext());
+        currentCustomerId = sessionManager.getCustomerId();
+
         etAccountNumber = view.findViewById(R.id.etAccountNumber);
-        etCustomerId = view.findViewById(R.id.etCustomerId);
         etBalance = view.findViewById(R.id.etBalance);
         Button btnAdd = view.findViewById(R.id.btnAddAccount);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewAccounts);
 
-        // Configuration de la liste
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AccountAdapter(accountList);
         recyclerView.setAdapter(adapter);
 
-        // Charger les comptes au démarrage
         loadAccounts();
-
-        // Action du bouton
         btnAdd.setOnClickListener(v -> addAccount());
 
         return view;
     }
 
     private void loadAccounts() {
-        RetrofitClient.getAccountApi().getAccounts().enqueue(new Callback<List<Account>>() {
+        RetrofitClient.getAccountApi().getAccountsByCustomer(currentCustomerId).enqueue(new Callback<List<Account>>() {
             @Override
             public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -75,27 +74,24 @@ public class AccountFragment extends Fragment {
 
     private void addAccount() {
         String accNum = etAccountNumber.getText().toString();
-        String custIdStr = etCustomerId.getText().toString();
         String balanceStr = etBalance.getText().toString();
 
-        if (accNum.isEmpty() || custIdStr.isEmpty() || balanceStr.isEmpty()) {
+        if (accNum.isEmpty() || balanceStr.isEmpty()) {
             Toast.makeText(getContext(), "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Account a = new Account();
         a.setAccountNumber(accNum);
-        a.setCustomerId(Long.parseLong(custIdStr));
+        a.setCustomerId(currentCustomerId);
         a.setBalance(new BigDecimal(balanceStr));
 
         RetrofitClient.getAccountApi().addAccount(a).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Compte créé !", Toast.LENGTH_SHORT).show();
-                    // Vider les champs
-                    etAccountNumber.setText(""); etCustomerId.setText(""); etBalance.setText("");
-                    // Recharger la liste
+                    Toast.makeText(getContext(), "Demande envoyée ! En attente d'approbation.", Toast.LENGTH_LONG).show();
+                    etAccountNumber.setText(""); etBalance.setText("");
                     loadAccounts();
                 } else {
                     Toast.makeText(getContext(), "Erreur (Numéro existant ?)", Toast.LENGTH_SHORT).show();

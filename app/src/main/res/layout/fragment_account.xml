@@ -12,24 +12,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Créer un compte"
+            android:text="Demander un nouveau compte"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <EditText android:id="@+id/etAccountNumber" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Numéro de compte (ex: ACC-005)" />
-        <EditText android:id="@+id/etCustomerId" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="ID du Client" android:inputType="number" />
         <EditText android:id="@+id/etBalance" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Solde initial" android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/btnAddAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Créer le compte" />
+            android:text="Demander la création" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Liste des comptes"
+            android:text="Mes Comptes"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="20dp" />
